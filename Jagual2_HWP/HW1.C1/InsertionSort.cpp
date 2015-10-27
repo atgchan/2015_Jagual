@@ -31,36 +31,36 @@ void printArr(int* arr, int length)
 
 void main()
 {
-	/*°³¼ö°¡ 0°³ÀÎ »óÈ² Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 0ê°œì¸ ìƒí™© í…ŒìŠ¤íŠ¸*/
 	int arr1[1] = {};
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr1, 0);
 	insertionSort(arr1, 0);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr1, 0);
 
-	/*°³¼ö°¡ 1°³ÀÎ »óÈ² Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 1ê°œì¸ ìƒí™© í…ŒìŠ¤íŠ¸*/
 	int arr2[1] = {4};
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr2, 1);
 	insertionSort(arr2, 1);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr2, 1);
 
-	/*°³¼ö°¡ 2°³ÀÎ »óÈ² + °¨¼Ò¼ø Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 2ê°œì¸ ìƒí™© + ê°ì†Œìˆœ í…ŒìŠ¤íŠ¸*/
 	int arr3[2] = { 4, 1 };
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr3, 2);
 	insertionSort(arr3, 2);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr3, 2);
 
-	/*°³¼ö°¡ 20°³ÀÎ »óÈ² + ·£´ı + µ¿ÀÏÇÑ ¼ıÀÚ Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 20ê°œì¸ ìƒí™© + ëœë¤ + ë™ì¼í•œ ìˆ«ì í…ŒìŠ¤íŠ¸*/
 	int arr4[20] = { 4,4,4,4,4,3,3,5,7,9,1,3,6,0,6,3,2,6,8,3 };
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr4, 20);
 	insertionSort(arr4, 20);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr4, 20);
 
 	getchar();
