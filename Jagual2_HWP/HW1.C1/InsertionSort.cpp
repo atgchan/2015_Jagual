@@ -40,7 +40,7 @@ void main()
 	printArr(arr1, 0);
 
 	/*개수가 1개인 상황 테스트*/
-	int arr2[1] = {4};
+	int arr2[1] = { 4 };
 	std::cout << "정렬 전 : ";
 	printArr(arr2, 1);
 	insertionSort(arr2, 1);
@@ -56,7 +56,7 @@ void main()
 	printArr(arr3, 2);
 
 	/*개수가 20개인 상황 + 랜덤 + 동일한 숫자 테스트*/
-	int arr4[20] = { 4,4,4,4,4,3,3,5,7,9,1,3,6,0,6,3,2,6,8,3 };
+	int arr4[20] = { 4, 4, 4, 4, 4, 3, 3, 5, 7, 9, 1, 3, 6, 0, 6, 3, 2, 6, 8, 3 };
 	std::cout << "정렬 전 : ";
 	printArr(arr4, 20);
 	insertionSort(arr4, 20);
