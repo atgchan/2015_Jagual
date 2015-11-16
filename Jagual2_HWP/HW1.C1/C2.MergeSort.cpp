@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 
 void printArr(int* arr, int length)
 {
@@ -36,27 +36,27 @@ void Merge(int *arr, int *buffArr, int firstBegin, int firstLast, int secondLast
 	*/
 	/*
 		Initialization
-		buffArr[firstBegin]~buffArr[firstLast], buffArr[firstLast+1]~buffArr[secondLast] µÎ ¹üÀ§ ³»ÀÇ ¼ıÀÚµéÀº ÀÌ¹Ì Á¤·ÄµÇ¾î ÀÖ´Ù.
-		µû¶ó¼­ ¾ÕÀÇ ¹üÀ§¸¦ arr1, µÚÀÇ ¹üÀ§¸¦ arr2¶ó°í Á¤ÀÇÇÑ´Ù¸é,
-		arr1[firstBegin]ÀÇ °ªÀº arr1ÀÇ °ªµé Áß ÃÖ¼Ò°ªÀÌ°í,
-		arr2[firstLast+1]ÀÇ °ªÀº arr2ÀÇ °ªµé Áß ÃÖ¼Ò°ªÀÌ´Ù.
-		µû¶ó¼­ Çö ½ÃÁ¡¿¡¼­ arr1Idx´Â arr1ÀÇ ÃÖ¼Ò°ªÀ» °¡¸£Å°°í, arr2Idx´Â arr2ÀÇ ÃÖ¼Ò°ªÀ» °¡¸£Å²´Ù.
-		µû¶ó¼­ Çö ´Ü°è¿¡¼­ loop invariant´Â TRUEÀÌ´Ù.
+		buffArr[firstBegin]~buffArr[firstLast], buffArr[firstLast+1]~buffArr[secondLast] ë‘ ë²”ìœ„ ë‚´ì˜ ìˆ«ìë“¤ì€ ì´ë¯¸ ì •ë ¬ë˜ì–´ ìˆë‹¤.
+		ë”°ë¼ì„œ ì•ì˜ ë²”ìœ„ë¥¼ arr1, ë’¤ì˜ ë²”ìœ„ë¥¼ arr2ë¼ê³  ì •ì˜í•œë‹¤ë©´,
+		arr1[firstBegin]ì˜ ê°’ì€ arr1ì˜ ê°’ë“¤ ì¤‘ ìµœì†Œê°’ì´ê³ ,
+		arr2[firstLast+1]ì˜ ê°’ì€ arr2ì˜ ê°’ë“¤ ì¤‘ ìµœì†Œê°’ì´ë‹¤.
+		ë”°ë¼ì„œ í˜„ ì‹œì ì—ì„œ arr1IdxëŠ” arr1ì˜ ìµœì†Œê°’ì„ ê°€ë¥´í‚¤ê³ , arr2IdxëŠ” arr2ì˜ ìµœì†Œê°’ì„ ê°€ë¥´í‚¨ë‹¤.
+		ë”°ë¼ì„œ í˜„ ë‹¨ê³„ì—ì„œ loop invariantëŠ” TRUEì´ë‹¤.
 	*/
 	for (idx = firstBegin; idx <= secondLast; idx++)
 	{
 		/*
 			Maintenance
-			arr1[arr1Idx] <= arr2[arr2Idx] ¶ó°í °¡Á¤ÇÑ´Ù.
-			arr1[arr1Idx]´Â ¾ÆÁ÷ arrÀ¸·Î º¹»çµÇÁö ¾ÊÀº °¡Àå ÀÛÀº ¿ø¼ÒÀÌ´Ù.
-			¶ÇÇÑ ÀÌ Àü¿¡ º¹»çµÈ ¿ø¼ÒµéÀº ¸ğµÎ arr1[arr1Idx]º¸´Ù ÀÛ°Å³ª °°´Ù.
-			µû¶ó¼­ arr1[arr1Idx]°¡ º¹»çµÇ¸é arrÀÇ °³¼ö°¡ ÇÑ °³ ´Ã¾î³ªµµ Á¤·Ä »óÅÂ¸¦ À¯ÁöÇÑ´Ù.
+			arr1[arr1Idx] <= arr2[arr2Idx] ë¼ê³  ê°€ì •í•œë‹¤.
+			arr1[arr1Idx]ëŠ” ì•„ì§ arrìœ¼ë¡œ ë³µì‚¬ë˜ì§€ ì•Šì€ ê°€ì¥ ì‘ì€ ì›ì†Œì´ë‹¤.
+			ë˜í•œ ì´ ì „ì— ë³µì‚¬ëœ ì›ì†Œë“¤ì€ ëª¨ë‘ arr1[arr1Idx]ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ë‹¤.
+			ë”°ë¼ì„œ arr1[arr1Idx]ê°€ ë³µì‚¬ë˜ë©´ arrì˜ ê°œìˆ˜ê°€ í•œ ê°œ ëŠ˜ì–´ë‚˜ë„ ì •ë ¬ ìƒíƒœë¥¼ ìœ ì§€í•œë‹¤.
 
-			¶ÇÇÑ arr1[arr1Idx]¸¦ º¹»çÇÑ µÚ arr1IdxÀÇ °ªÀ» 1 Áõ°¡½ÃÅ²´Ù.
-			µû¶ó¼­ arr1[arr1Idx-1]º¸´Ù Å©°Å³ª °°Àº »õ·Î¿î arr1[arr1Idx]¸¦ °¡¸£Å°°Ô µÇ°í, ´Ù½Ã MaintenenceÀÇ Ã¹ ´Ü°è·Î µ¹¾Æ°¡ °ªÀ» ºñ±³ÇÒ ¼ö ÀÖ´Ù.
-			¶ÇÇÑ arr1[arr1Idx-1]°¡ arr1¿¡ º¹»çµÇ¾úÀ¸¹Ç·Î arr1[arr1Idx]ÀÇ °ªÀº ´Ù½Ã arr1ÀÇ ¿ø¼Ò Áß °¡Àå ÀÛÀº °ªÀÌ µÇ¾î ÃÊ±â Á¶°ÇÀ» ¸¸Á·ÇÑ´Ù.
+			ë˜í•œ arr1[arr1Idx]ë¥¼ ë³µì‚¬í•œ ë’¤ arr1Idxì˜ ê°’ì„ 1 ì¦ê°€ì‹œí‚¨ë‹¤.
+			ë”°ë¼ì„œ arr1[arr1Idx-1]ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì€ ìƒˆë¡œìš´ arr1[arr1Idx]ë¥¼ ê°€ë¥´í‚¤ê²Œ ë˜ê³ , ë‹¤ì‹œ Maintenenceì˜ ì²« ë‹¨ê³„ë¡œ ëŒì•„ê°€ ê°’ì„ ë¹„êµí•  ìˆ˜ ìˆë‹¤.
+			ë˜í•œ arr1[arr1Idx-1]ê°€ arr1ì— ë³µì‚¬ë˜ì—ˆìœ¼ë¯€ë¡œ arr1[arr1Idx]ì˜ ê°’ì€ ë‹¤ì‹œ arr1ì˜ ì›ì†Œ ì¤‘ ê°€ì¥ ì‘ì€ ê°’ì´ ë˜ì–´ ì´ˆê¸° ì¡°ê±´ì„ ë§Œì¡±í•œë‹¤.
 
-			¹İ´ëÀÇ °æ¿ìµµ ¸¶Âù°¡ÁöÀÌ´Ù.
+			ë°˜ëŒ€ì˜ ê²½ìš°ë„ ë§ˆì°¬ê°€ì§€ì´ë‹¤.
 		*/
 		if (arr1Idx > firstLast)
 			arr[idx] = buffArr[arr2Idx++];
@@ -68,13 +68,13 @@ void Merge(int *arr, int *buffArr, int firstBegin, int firstLast, int secondLast
 	}
 	/*
 		Termination
-		idx > secondLastÀÇ ½ÃÁ¡ÀÏ ¶§ Á¾·á
-		idx - -1 == secondLast ÀÌ¹Ç·Î buffArrÀÇ ¸ğµç ¿ø¼Ò¿¡ Á¢±ÙÇØ¼­ arrÀ¸·Î º¹»ç¸¦ ¿Ï·áÇßÀ½À» ¾Ë ¼ö ÀÖ´Ù
-		Á¾·á ½ÃÁ¡¿¡¼­ arrÀÇ »óÅÂ:
-			¿ø¼Ò °³¼ö : secondLast - firstBegin + 1
-			¿ø¼Ò ±¸¼º : arr1°ú arr2ÀÇ ¿ø¼Ò Áß ÀÛÀº ¿ø¼Ò (secondLast - firstBegin +1)°³
-			arr1°ú arr2¿¡ ³²¾ÆÀÖ´Â(º¹»çµÇÁö ¾ÊÀº) ¿ø¼Ò: 0°³
-			Á¤·Ä»óÅÂ À¯Áö
+		idx > secondLastì˜ ì‹œì ì¼ ë•Œ ì¢…ë£Œ
+		idx - -1 == secondLast ì´ë¯€ë¡œ buffArrì˜ ëª¨ë“  ì›ì†Œì— ì ‘ê·¼í•´ì„œ arrìœ¼ë¡œ ë³µì‚¬ë¥¼ ì™„ë£Œí–ˆìŒì„ ì•Œ ìˆ˜ ìˆë‹¤
+		ì¢…ë£Œ ì‹œì ì—ì„œ arrì˜ ìƒíƒœ:
+			ì›ì†Œ ê°œìˆ˜ : secondLast - firstBegin + 1
+			ì›ì†Œ êµ¬ì„± : arr1ê³¼ arr2ì˜ ì›ì†Œ ì¤‘ ì‘ì€ ì›ì†Œ (secondLast - firstBegin +1)ê°œ
+			arr1ê³¼ arr2ì— ë‚¨ì•„ìˆëŠ”(ë³µì‚¬ë˜ì§€ ì•Šì€) ì›ì†Œ: 0ê°œ
+			ì •ë ¬ìƒíƒœ ìœ ì§€
 	*/
 }
 
@@ -102,45 +102,45 @@ int isSorted(int *arr, int length)
 
 void main()
 {
-	/*°³¼ö°¡ 0°³ÀÎ »óÈ² Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 0ê°œì¸ ìƒí™© í…ŒìŠ¤íŠ¸*/
 	int arr1[1] = {};
 	int arr1Buff[1] = {};
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr1, 0);
 	MergeSort(arr1, arr1Buff, 0, 0);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr1, 0);
-	std::cout << "°á°ú : " << isSorted(arr1, 0) << std::endl;
+	std::cout << "ê²°ê³¼ : " << isSorted(arr1, 0) << std::endl;
 
-	/*°³¼ö°¡ 1°³ÀÎ »óÈ² Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 1ê°œì¸ ìƒí™© í…ŒìŠ¤íŠ¸*/
 	int arr2[1] = { 4 };
 	int arr2Buff[1] = { 0 };
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr2, 1);
 	MergeSort(arr2, arr2Buff, 0, 0);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr2, 1);
-	std::cout << "°á°ú : " << isSorted(arr2, 1) << std::endl;
+	std::cout << "ê²°ê³¼ : " << isSorted(arr2, 1) << std::endl;
 
-	/*°³¼ö°¡ 2°³ÀÎ »óÈ² + °¨¼Ò¼ø Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 2ê°œì¸ ìƒí™© + ê°ì†Œìˆœ í…ŒìŠ¤íŠ¸*/
 	int arr3[2] = { 4, 0 };
 	int arr3Buff[2] = { 0 };
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr3, 2);
 	MergeSort(arr3, arr3Buff, 0, 1);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr3, 2);
-	std::cout << "°á°ú : " << isSorted(arr3, 2) << std::endl;
+	std::cout << "ê²°ê³¼ : " << isSorted(arr3, 2) << std::endl;
 
-	/*°³¼ö°¡ 20°³ÀÎ »óÈ² + ·£´ı + µ¿ÀÏÇÑ ¼ıÀÚ Å×½ºÆ®*/
+	/*ê°œìˆ˜ê°€ 20ê°œì¸ ìƒí™© + ëœë¤ + ë™ì¼í•œ ìˆ«ì í…ŒìŠ¤íŠ¸*/
 	int arr4[20] = { 4, 4, 4, 4, 4, 3, 3, 5, 7, 9, 1, 3, 6, 0, 6, 3, 2, 6, 8, 3 };
 	int arr4Buff[20] = {0};
-	std::cout << "Á¤·Ä Àü : ";
+	std::cout << "ì •ë ¬ ì „ : ";
 	printArr(arr4, 20);
 	MergeSort(arr4, arr4Buff, 0, 19);
-	std::cout << "Á¤·Ä ÈÄ : ";
+	std::cout << "ì •ë ¬ í›„ : ";
 	printArr(arr4, 20);
-	std::cout << "°á°ú : " << isSorted(arr4, 20) << std::endl;
+	std::cout << "ê²°ê³¼ : " << isSorted(arr4, 20) << std::endl;
 
 	getchar();
 }
