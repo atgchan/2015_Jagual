@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <limits>
 
 typedef struct heap
 {
@@ -81,6 +82,39 @@ void PrintHeap(heap_t* heap)
 	std::cout << std::endl;
 }
 
+int ExtractMax(heap_t* heap)
+{
+	int tmp = heap->element[1];
+	heap->element[1] = heap->element[heap->size];
+	heap->element[heap->size] = tmp;
+	int maxValue = heap->element[heap->size];
+	--heap->size;
+	MaxHeapify(heap, 1);
+	return maxValue;
+}
+
+void HeapIncreaseKey(heap_t* heap, int key)
+{
+	if (key / 2 < 1)
+	{
+		return;
+	}
+	else if (heap->element[key] > heap->element[key / 2])
+	{
+		int tmp = heap->element[key];
+		heap->element[key] = heap->element[key / 2];
+		heap->element[key / 2] = tmp;
+	}
+	HeapIncreaseKey(heap, key / 2);
+}
+
+void MaxHeapInsert(heap_t* heap, int key)
+{
+	++heap->size;
+	heap->element[heap->size] = key;//std::numeric_limits<int>::min();
+	HeapIncreaseKey(heap, heap->size);
+}
+
 void TestHeapify(int size)
 {
 	int arr[100] = {};
@@ -93,6 +127,14 @@ void TestHeapify(int size)
 	{
 		PrintHeap(&heap1);
 	}
+
+	std::cout << "최대값을 제거합니다.." << std::endl;
+	int maxValue = ExtractMax(&heap1);
+	PrintHeap(&heap1);
+
+	std::cout << "값을 추가합니다.. 50" << std::endl;
+	MaxHeapInsert(&heap1, 50);
+	PrintHeap(&heap1);
 }
 
 int main()
